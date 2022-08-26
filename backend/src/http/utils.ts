@@ -30,6 +30,9 @@ export const handleReadFile = (err: NodeJS.ErrnoException, content: Buffer, res:
                 res.writeHead(404, { 'Content-Type': 'text/html' });
                 res.end(content);
             });
+        } else {
+            res.writeHead(500);
+            res.end(`Server Error: ${err.code}`);
         }
     } else {
         res.end(content);
