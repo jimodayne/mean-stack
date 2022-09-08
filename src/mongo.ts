@@ -8,6 +8,7 @@ interface Food {
     name: string;
     healthy: boolean;
 }
+
 // const foodArr: Food[] = [
 //     { name: 'cake', healthy: false },
 //     { name: 'lettuce', healthy: true },
@@ -32,7 +33,10 @@ const main = async () => {
     const movies = db.collection('movies');
 
     // Get the film Titanic
-    const tinatic = await movies.findOne({ title: 'Titanic' });
+    const tinatic = await movies.findOne(
+        { title: 'Titanic' },
+        { projection: { _id: 0, title: 1, year: 1, languages: 1 } },
+    );
     console.log('movies titanic >> ', tinatic);
 
     const foods = db.collection<Food>('foods');
