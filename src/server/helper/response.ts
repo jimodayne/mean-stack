@@ -1,7 +1,7 @@
 import { Response } from 'express';
 import { ResponseData } from '../constants/interface';
 
-function successRes<T>(res: Response, data: T, total?: number, statusCode = 200) {
+function successRes<T>(res: Response, data: T, statusCode = 200, total?: number) {
     const response: ResponseData<T> = {
         code: statusCode,
         data,
@@ -17,6 +17,7 @@ function errorRes(res: Response, err, errMsg = 'Something went wrong', statusCod
     if (err) {
         console.error('ERROR:', err);
     }
+
     return res.status(statusCode).json({ error: errMsg, code: statusCode });
 }
 
